@@ -1,0 +1,942 @@
+.sr_only {display: none;}
+* {
+    box-sizing: border-box;
+    text-transform: uppercase;
+}
+
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #828282;
+    background-image:
+            linear-gradient(to right, #cccccc80 1px, transparent 1px),
+            linear-gradient(to bottom, #cccccc80 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+div.container {
+    position: relative;
+    display: flex;
+}
+
+main.main_container {
+    display: flex;
+    width: 1250px;
+    height: 800px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+
+section.left_page {
+    width: 380px;
+    padding: 26px 0 26px 26px;
+    border-right: none !important;
+}
+
+section.right_page {
+    width: 1180px;
+    padding: 26px 26px 26px 0;
+    border-left: none !important;
+}
+
+section.book_cover {
+    position: relative;
+    height: 100%;
+    border: 1px solid #828282;
+    border-radius: 16px;
+    background-color: #82bad6;
+}
+
+
+section.book_cover::after {
+    content: '';
+    position: absolute;
+    top: 13px;
+    width: calc(100% - 13px);
+    height: calc(100% - 26px);
+    border: 2px dashed rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+}
+
+section.left_page::after {
+    left: 13px;
+    border-right: none;
+}
+
+section.right_page::after {
+    right: 13px;
+    border-left: none;
+}
+
+
+.inner_page {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 16px;
+    border: 1px solid #828282;
+}
+
+
+section.left_page .inner_page {
+    border-right: none;
+    padding-right: 8px;
+
+}
+
+section.right_page .inner_page {
+    border-left: none;
+    padding-left: 8px;
+}
+
+.inner_page .top_area {
+    min-height: 32px;
+    margin-bottom: 4px;
+}
+
+.inner_page .bottom_area {
+    width: 100%;
+    max-height: 680px;
+    height: 100%;
+    padding: 20px 28px;
+    border-radius: 14px;
+    border: 1px solid #999;
+    overflow-y: scroll;
+}
+
+
+
+
+/* 투데이 */
+section.left_page section.today_stats {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+section.left_page section.today_stats .visit_list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.visit_list dt,
+.visit_list dd {
+    margin: 0;
+}
+
+.visit_list dt {
+    margin-right: 4px;
+    font-size: 9px;
+}
+
+.visit_list dd {
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.visit_list dd:not(:last-child)::after {
+    content: "|";
+    margin: 0 10px;
+    color: #555;
+}
+
+.visit_list dd.today_value {
+    color: #e81d1d;
+}
+
+
+
+
+/* 오늘의 기분 */
+.today_mood {
+    padding: 3px 20px;
+    border: 1px solid #888;
+    border-radius: 2px;
+    margin-bottom: 8px;
+}
+
+.today_mood.hide {
+    display: none;
+}
+
+.today_mood p {
+    font-size: 9px;
+    font-weight: bold;
+    color: #82bad6;
+}
+
+.today_mood button {
+    margin-left: 6px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #000;
+}
+
+
+
+/* 프로필 이미지 */
+.profile_pic {
+    position: relative;
+    width: 100%;
+    max-height: 250px;
+    height: 100%;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.profile_pic img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+
+/* 소개글 */
+.profile_intro {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.profile_intro p {
+    font-size: 14px;
+}
+
+
+/* 히스토리 */
+.profile_history {
+    border-bottom: 1px solid #888;
+    margin-bottom: 10px;
+}
+
+.profile_history p {
+    display: inline-flex;
+    align-items: center;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.profile_history p::before {
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 2px;
+    margin-right: 2px;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 6px solid black;
+    background: none;
+    border-radius: 0;
+    cursor: pointer;
+    padding: 0;
+}
+
+
+
+/* 유저 정보 */
+.profile_info {
+
+}
+
+.user_name {
+    display: inline-block;
+    margin-right: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #5a87af;
+}
+
+.user_gender, .user_birth {
+    display: inline-block;
+    font-size: 11px;
+    color: #888;
+}
+
+.user_email {
+    font-size: 11px;
+}
+
+.user_email a {
+    text-transform: lowercase;
+    color: #FF7F00;
+}
+
+
+
+
+/* 오른쪽 페이지 */
+.title_area {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 10px;
+}
+
+.title_area h3 {
+    font-size: 21px;
+    font-weight: bold;
+    color: #5a87af;
+}
+
+.title_area .flex-wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.title_area ul {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #FF7F00;
+}
+
+.title_area a {
+    text-transform: lowercase;
+    color: #888;
+    font-size: 10px;
+}
+
+
+
+
+
+
+
+.grid_container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    grid-template-areas:
+        "new links"
+        "mini mini"
+        "ilchone ilchone";
+
+    grid-template-rows: auto auto auto;
+    gap: 10px;
+    max-width: 800px;
+}
+
+.recent_posts { grid-area: new; }
+.links { grid-area: links; }
+.miniroom { grid-area: mini; }
+.ilchon { grid-area: ilchone; }
+
+.grid_container h2 {
+    height: 30px;
+    font-size: 18px;
+    color: #5a87af;
+}
+
+
+/* 최근 게시물 */
+.recent_posts h2 {
+    border-bottom: 1px solid #888;
+    margin-bottom: 6px;
+}
+
+.recent_posts .post_lists .tag {
+    display: inline-block;
+    padding: 0px 6px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.tag_gray {
+    background-color: #888;
+}
+
+.tag_pink {
+    background-color: #c243a4;
+}
+
+.tag_green {
+    background-color: #4ed938;
+}
+
+.tag_orange {
+    background-color: #d97537;
+}
+
+.recent_posts .post_lists h3 {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+
+
+/* 사진첩, 방명록 등 링크 */
+.links {
+    margin-top: 30px;
+    border-top: 1px dashed #888;
+}
+
+.links ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 6px;
+}
+
+.links ul li {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px dashed;
+    font-size: 14px;
+    height: 32px;
+}
+
+.links ul li strong {
+    font-weight: normal;
+    margin-right: 15px;
+}
+
+.links ul li .post_count {
+    font-size: 12px;
+    color: #0e2fed;
+}
+
+
+
+/* 미니룸 */
+.miniroom {
+    margin-top: 20px;
+}
+
+.miniroom img {
+}
+
+
+
+
+/* 일촌평 */
+.ilchon {
+    margin-top: 20px;
+}
+
+.ilchon h2 {
+    border-bottom: 1px solid #888;
+    margin-bottom: 10px;
+}
+
+.ilchon form {
+    background-color: #f0f0f0;
+    border: 1px solid #d3d3d3;
+    padding: 10px 20px;
+}
+
+.ilchon form label {
+    margin-right: 10px;
+    color: #5a87af;
+    font-weight: bold;
+    text-transform: none;
+}
+
+
+.ilchon form input {
+    width: 560px;
+    background-color: #fff;
+    padding: 6px 20px;
+    margin-right: 10px;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+
+.ilchon form button {
+    padding: 6px 20px;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+
+
+.ilchon_lists {
+    margin-top: 10px;
+}
+
+.ilchon_lists li {
+    border-bottom: 1px solid #888;
+    padding: 6px 0;
+}
+
+.ilchon_lists .message {
+    color: #333;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.ilchon_lists .meta {
+    font-size: 14px;
+    color: #333;
+    margin-left: 4px;
+}
+
+.ilchon_lists .nickname {
+    font-weight: 600;
+}
+
+.ilchon_lists .friend_name {
+    color: #1177cc;
+    margin-left: 2px;
+}
+
+.ilchon_lists time {
+    font-size: 12px;
+    color: #888;
+}
+
+
+/* 네비 */
+.nav {
+    position: absolute;
+    z-index: 10;
+    top: 100px;
+    right: -36px;
+}
+
+.nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.nav li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 48px;
+    background-color: #2873a5;
+    color: #fff;
+    border: 1px solid #000;
+    border-left: none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+}
+
+
+
+.home .nav li.active {
+    background-color: #fff;
+    color: #000;
+}
+
+.guestbook .nav li.active {
+    background-color: #fff;
+    color: #000;
+}
+
+
+/* 방명록 */
+
+.guestbook_container {}
+
+.guestbook .bottom_area {
+    padding-top: 24px;
+    padding: 10px 18px;
+}
+
+.guestbook_input_inner {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    padding: 10px 10px 30px 10px;
+    background-color: #eee;
+}
+
+.guestbook_form {
+    width: 80%;
+    height: 80px;
+}
+
+.guestbook textarea {
+    display: inline-block;
+    width: 100%;
+    height: 90px;
+    padding: 10px;
+    background-color: #fff;
+    resize: none;
+    font-size: 12px;
+    border: 1px solid #d8d8d8;
+}
+
+.minimi_figure, .guestbook_figure {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    border: 1px solid #d8d8d8;
+}
+
+.minimi_figure img, .guestbook_figure img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.guestbook_btn {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid #888;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 2px;
+    transition: background .3s;
+}
+
+.guestbook_btn:hover {
+    background-color: #ddd;
+    transition: background .3s;
+}
+
+.guestbook_list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.guestbook_list li {
+    width: 100%;
+}
+
+
+.guestbook_header {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    background-color: #eee;
+    padding: 4px 10px;
+    border-top: 1px solid #ccc;
+}
+
+.guestbook_number {
+    font-style: normal;
+    font-size: 8px;
+    margin-right: 4px;
+}
+
+.guestbook_writer {
+    font-weight: normal;
+    font-size: 14px;
+    color: #25407E;
+}
+
+.mini_home_btn {
+    width: 18px;
+    height: 18px;
+    background-image: url('/resources/imgs/minihome_icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    color: transparent;
+    font-size: 0;
+}
+
+.guestbook_header time {
+    font-size: 10px;
+    color: #888;
+    margin-left: 4px;
+}
+
+
+.guestbook_body {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+.guestbook_figure {
+    border-radius: 4px;
+}
+
+.guestbook_text {
+    font-size: 12px;
+    max-width: 360px;
+}
+
+.pagination {
+    margin-top: 30px;
+}
+
+.pagination ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 8px;
+    padding: 0;
+}
+
+.pagination li a {
+    display: block;
+    text-decoration: none;
+    color: #888;
+    font-size: 14px;
+}
+
+.pagination li a.active,
+.pagination li a:hover,
+.pagination .prev,
+.pagination .next {
+    color: #333;
+}
+
+
+
+
+
+
+
+
+
+
+/* 맥북 반응형 */
+@media screen and (max-width: 1600px) and (min-width: 1221px) {
+    main.main_container {
+        width: 1100px;
+        height: 700px;
+    }
+
+    .inner_page .bottom_area {
+        padding: 16px 20px;
+    }
+
+    .profile_pic {
+        max-height: 210px;
+    }
+
+    .profile_intro {
+        height: 160px;
+    }
+
+    .grid_container {
+        max-width: 720px;
+    }
+
+    .ilchon form {
+        padding: 6px 20px;
+    }
+
+    .ilchon form input {
+        width: 460px;
+        padding: 2px 14px;
+        margin-right: 2px;
+    }
+
+    .ilchon form button {
+        padding: 2px 14px;
+    }
+
+    .nav {
+        right: -31px;
+    }
+
+    .nav li {
+        width: 75px;
+        height: 45px;
+    }
+}
+
+
+
+/* 태블릿 반응형 */
+@media screen and (max-width: 1220px) {
+    main.main_container {
+        width: 800px;
+        height: 540px;
+    }
+
+    section.book_cover {
+        border-radius: 12px;
+    }
+
+    section.book_cover::after {
+        top: 10px;
+        width: calc(100% - 10px);
+        height: calc(100% - 20px);
+        border-radius: 12px;
+    }
+
+
+    section.left_page {
+        padding: 18px 0 18px 18px;
+    }
+
+    section.left_page::after {
+        left: 10px;
+    }
+
+    section.right_page {
+        padding: 18px 18px 18px 0;
+    }
+
+    section.left_page .inner_page {
+        padding-right: 4px;
+    }
+
+    section.right_page .inner_page {
+        padding-left: 4px;
+    }
+
+    .inner_page {
+        border-radius: 14px;
+    }
+
+    .inner_page .bottom_area {
+        padding: 10px 18px;
+        border-radius: 10px;
+    }
+
+    .today_mood {
+        padding: 2px 8px;
+    }
+
+    .today_mood button {
+        font-size: 12px;
+    }
+
+    .visit_list dt {
+        font-size: 8px;
+    }
+
+    .visit_list dd {
+        font-size: 10px;
+    }
+
+    .profile_pic {
+        max-height: 160px;
+    }
+
+    .profile_intro {
+        height: 110px;
+    }
+
+    .profile_intro p {
+        font-size: 12px;
+    }
+
+    .profile_history {
+        margin-bottom: 6px;
+    }
+
+    .profile_history p {
+        font-size: 10px;
+    }
+
+    .user_name {
+        margin-right: 0;
+        font-size: 14px;
+    }
+
+    .user_gender, .user_birth, .user_email {
+        font-size: 9px;
+    }
+
+    .title_area h3 {
+        font-size: 18px;
+    }
+
+
+    .grid_container {
+        max-width: 510px;
+    }
+
+    .grid_container h2 {
+        height: 24px;
+        font-size: 14px;
+    }
+
+    .recent_posts .post_lists h3 {
+        font-size: 12px;
+    }
+
+    .recent_posts .post_lists .tag {
+        font-size: 12px;
+    }
+
+    .links {
+        margin-top: 24px;
+    }
+
+    .links ul {
+        margin-top: 3px;
+    }
+
+    .links ul li {
+        height: 32px;
+        font-size: 12px;
+    }
+
+    .ilchon form {
+        padding: 6px 10px;
+    }
+
+    .ilchon form label {
+        margin-right: 2px;
+        font-size: 12px;
+    }
+
+    .ilchon form input {
+        width: 340px;
+        padding: 2px 14px;
+        margin-right: 2px;
+        font-size: 12px;
+    }
+
+    .ilchon form button {
+        padding: 2px 12px;
+        font-size: 12px;
+    }
+
+    .ilchon_lists .message {
+        font-size: 12px;
+    }
+
+    .ilchon_lists .meta {
+        font-size: 12px;
+    }
+
+    .ilchon_lists time {
+        font-size: 10px;
+    }
+
+    .nav {
+        top: 85px;
+        right: -28px;
+    }
+
+    .nav ul {
+        gap: 3px;
+    }
+
+    .nav li {
+        width: 64px;
+        height: 38px;
+        font-size: 12px;
+    }
+}

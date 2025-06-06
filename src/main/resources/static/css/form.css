@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    color: #444;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 400px;
+    width: 100%;
+    padding: 30px;
+}
+
+h2 {
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    font-size: 24px;
+    font-weight: 600;
+    border-bottom: 1px solid #f9d3d3;
+}
+
+p {
+    margin-top: 20px;
+}
+
+label {
+    width: 50%;
+    color: #888;
+    padding: 12px;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    position: relative;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+button, .button {
+    width: 100%;
+    min-height: 40px;
+    border-radius: 8px;
+    border: 0;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #f36b2b;
+    color: #fff;
+}
+
+.btn_join {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+a.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.username_input input {
+    margin-right: 10px;
+}
+
+.username_input.success input {
+    border-color: green;
+}
+
+.username_input.fail input {
+    border-color: red;
+}
+
+.gender_input input[type="radio"] {
+    display: none;
+}
+
+.gender_input label {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    color: #333;
+    transition: all 0.2s;
+}
+
+.gender_input input[type="radio"]:checked + label {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+}
+
+
+input::placeholder {
+    color: #888888;
+}
+
+select, input {
+    width: 100%;
+    min-height: 36px;
+    padding: 5px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+
+    width: 200px;
+    height: 36px;
+    border: 1px solid #ddd;
+    border-radius: 4px; /* 사각형 모서리 둥글게 */
+    margin-right: 6px;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+input[type="date"] {
+    color: #888888;
+}
+
+input[type="radio"]:checked {
+    background-color: #eee; /* 선택됐을 때 어두운색 */
+    border-color: #eee;
+}
+
+.usernameResult {
+    display: block;
+}

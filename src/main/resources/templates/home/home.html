@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cyworld</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/layout.css">
+</head>
+
+<body class="home">
+    <div class="container">
+        <!-- 북 커버 -->
+        <main class="main_container ">
+            <!-- 왼쪽 페이지: 프로필 정보 -->
+            <section class="section_left book_cover left_page">
+                <h2 class="sr_only">왼쪽 페이지</h2>
+
+                <div class="inner_page">
+                    <!-- 투데이 -->
+                    <section class="today_stats top_area">
+                        <h3 class="sr_only">방문자 합계</h3>
+                        <dl class="visit_list">
+                            <dt>today</dt>
+                            <dd class="today_value">128</dd>
+                            <dt>total</dt>
+                            <dd>16525</dd>
+                        </dl>
+                    </section>
+
+                    <section class="profile_area bottom_area">
+                        <h3 class="sr_only">프로필 영역</h3>
+
+                        <article class="mood">
+                            <h4 class="sr_only">오늘의 기분</h4>
+
+                            <!-- 주인장이 보는 오늘의 기분 -->
+                            <form action="/mood/update" method="post" id="moodForm">
+                                <section class="today_mood" aria-label="오늘의 기분 선택" data-role="admin">
+                                    <h4 class="sr_only">오늘의 기분 선택</h4>
+
+                                    <label for="moodDropdown" class="sr_only">오늘의 기분 선택</label>
+
+                                    <p>today is..
+                                        <button id="moodDropdown" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="moodDropdownLabel">
+                                            🌷 행복
+                                        </button>
+                                    </p>
+                                    <span id="moodDropdownLabel" class="sr_only">오늘의 기분 선택 버튼</span>
+
+                                    <ul id="moodList" role="listbox" tabindex="-1" hidden>
+                                        <li role="option" data-value="happy" aria-selected="true">🌷 행복</li>
+                                        <li role="option" data-value="sad" aria-selected="false">⛱️ 그리움</li>
+                                    </ul>
+
+                                    <input type="hidden" name="mood" id="moodInput" value="happy" />
+                                </section>
+                            </form>
+                            <!-- 주인장이 보는 오늘의 기분 -->
+
+
+                            <!-- 다른 유저가 보는 오늘의 기분 -->
+                            <section class="today_mood hide" aria-label="오늘의 기분" data-role="user">
+                                <p id="moodLabel">today is.. <strong>🌷 행복</strong></p>
+                            </section>
+                            <!-- 다른 유저가 보는 오늘의 기분 -->
+                        </article>
+
+
+                        <article class="profile_pic">
+                            <h4 class="sr_only">프로필 사진</h4>
+
+                            <figure>
+                                <img src="/imgs/test03.JPG" alt="프로필 사진" />
+                                <figcaption class="sr_only">사용자의 기본 프로필 이미지</figcaption>
+                            </figure>
+                        </article>
+
+                        <article class="profile_intro">
+                            <h4 class="sr_only">소개글</h4>
+
+                            <p>
+                                답답하면<br>
+                                너희들이<br>
+                                가서뛰던지~
+                            </p>
+                        </article>
+
+                        <article class="profile_history">
+                            <h4 class="sr_only">프로필 히스토리</h4>
+
+                            <p>History</p>
+                            <!-- <button class="btn-prev_history" aria-label="이전 히스토리 보기">▲</button>
+                            <button class="btn-next_history" aria-label="다음 히스토리 보기">▼</button> -->
+                        </article>
+
+                        <article class="profile_info">
+                            <h4 class="sr_only">유저 정보</h4>
+
+                            <p class="user_name">${name}</p>
+                            <p class="user_gender">(♀)</p>
+                            <p class="user_birth">1999. 01. 28</p>
+                            <p class="user_email">
+                                <a href="mailto:ajdrns8694@gmail.com">ajdrns8694@gmail.com</a>
+                            </p>
+                        </article>
+
+                    </section>
+
+                </div>
+            </section>
+
+
+            <!-- 오른쪽 페이지: 미니룸 -->
+            <section class="section_right book_cover right_page">
+                <h2 class="sr_only">오른쪽 페이지</h2>
+
+                <div class="inner_page">
+                    <section class="title_area top_area">
+                        <h3>사이좋은 사람들, 싸이월드</h3>
+
+                        <div class="flex-wrap">
+                            <ul>
+                                <li>
+                                    <button type="button" aria-label="일촌 맺기 추가하기">+일촌 맺기</button>
+                                </li>
+                                <li>
+                                    <button type="button" aria-label="팬 되기 추가하기">+팬되기</button>
+                                </li>
+                            </ul>
+
+                            <a href="javascript:void(0)" aria-disabled="true" tabindex="-1" title="싸이월드 주소 입력 예정">http://www.cyworld.com/dallaezzang</a>
+                        </div>
+                    </section>
+
+
+
+                    <section class="bottom_area" aria-label="프로필 하단 영역">
+                        <div class="grid_container">
+
+                            <!-- 최근 게시물 -->
+                            <section aria-labelledby="recent-posts-title" class="recent_posts">
+                                <h2 id="recent-posts-title">최근 게시물</h2>
+                                <ul class="post_lists">
+                                    <li>
+                                        <article>
+                                            <a href="#">
+                                                <span class="tag tag_gray">동영상</span>
+                                                <h3>맘에 드는 아이템은 소망상자에 넣어보세요</h3>
+                                            </a>
+                                        </article>
+                                    </li>
+                                    <li>
+                                        <article>
+                                            <a href="#">
+                                                <span class="tag tag_pink">게시판</span>
+                                                <h3>내 개성은 미니미로</h3>
+                                            </a>
+                                        </article>
+                                    </li>
+                                    <li>
+                                        <article>
+                                            <a href="#">
+                                                <span class="tag tag_green">갤러리</span>
+                                                <h3>스킨, 메뉴효과 예약 기능 좋아</h3>
+                                            </a>
+                                        </article>
+                                    </li>
+                                    <li>
+                                        <article>
+                                            <a href="#">
+                                                <span class="tag tag_orange">사진첩</span>
+                                                <h3>더욱 편리해진 사용중 아이템</h3>
+                                            </a>
+                                        </article>
+                                    </li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </section>
+
+                            <!-- 사진첩, 방명록 등 -->
+                            <section aria-labelledby="grid-links-title" class="links">
+                                <h2 id="grid-links-title" class="sr_only">바로가기 링크</h2>
+                                <ul class="grid-2x2" role="group" aria-label="관련 링크 목록">
+                                    <li>
+                                        <a href="#" class="grid-item">
+                                            <strong>쥬크박스</strong>
+                                            <span class="post_count">1/881</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#" class="grid-item">
+                                            <strong>사진첩</strong>
+                                            <span class="post_count">30/9128</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="/guestbook" class="grid-item">
+                                            <strong>방명록</strong>
+                                            <span class="post_count">28/234</span>
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a href="#" class="grid-item">
+                                            <strong>즐겨찾기</strong>
+                                            <span class="post_count">0/5</span>
+                                        </a>
+                                    </li>
+
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </section>
+
+                            <!-- 미니룸 -->
+                            <section class="miniroom" aria-labelledby="miniroom">
+                                <h2 id="miniroom-title">미니룸</h2>
+
+                                <figure>
+                                    <img src="/imgs/miniroom.png" alt="프로필 사진" />
+                                    <figcaption class="sr_only">사용자의 기본 프로필 이미지</figcaption>
+                                </figure>
+
+                            </section>
+
+                            <!-- 일촌평 -->
+                            <section class="ilchon" aria-labelledby="ilchon">
+                                <h2 id="ilchon">일촌평</h2>
+
+                                <form class="ilchon-form" action="#" method="post">
+                                    <label for="ilchon-input">Friends say</label>
+                                    <input
+                                            type="text"
+                                            id="ilchon-input"
+                                            name="ilchon"
+                                            placeholder="일촌과 나누고 싶은 이야기를 남겨보세요~!"
+                                            maxlength="100"
+                                            required
+                                    />
+                                    <button type="submit">작성</button>
+                                </form>
+
+
+                                <ul class="ilchon_lists">
+                                    <li>
+                                        <p class="message">
+                                            소풍 재밌었나요? ^ㅅ^
+                                            <span class="meta">
+                                (<span class="nickname">은지</span>
+                                <a href="#" class="friend_name">홍은지</a>)
+                                <time datetime="2008-04-01T20:31">2008.06.01 20:31</time>
+                              </span>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="message">
+                                            해피뉴이어 !! ㅋ 2008!!!
+                                            <span class="meta">
+                                (<span class="nickname">현석</span>
+                                <a href="#" class="friend_name">정현석</a>)
+                                <time datetime="2008-06-01T20:31">2008.06.01 20:31</time>
+                              </span>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="message">
+                                            니가있어내가든든해^^ 멋진넘ㄱ-
+                                            <span class="meta">
+                                (<span class="nickname">민지</span>
+                                <a href="#" class="friend_name">박민지</a>)
+                                <time datetime="2008-06-01T20:31">2008.06.01 20:31</time>
+                              </span>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="message">
+                                            방명록이 사라졌다 헉스
+                                            <span class="meta">
+                                (<span class="nickname">글쎄요...</span>
+                                <a href="#" class="friend_name">장혜영</a>)
+                                <time datetime="2008-06-01T20:31">2008.06.01 20:31</time>
+                              </span>
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="message">
+                                            껄껄 멋쟁이 택성이 만나서 가치 노이자~
+                                            <span class="meta">
+                                (<span class="nickname">구의동무지개파</span>
+                                <a href="#" class="friend_name">정교원</a>)
+                                <time datetime="2008-06-01T20:31">2008.06.01 20:31</time>
+                              </span>
+                                        </p>
+                                    </li>
+                                </ul>
+                            </section>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </main>
+
+        <!-- 네비 메뉴 -->
+        <nav class="nav" aria-label="미니홈피 메뉴">
+            <ul>
+                <li class="active"><a href="/home">홈</a></li>
+                <li><a href="#">프로필</a></li>
+                <li><a href="#">다이어리</a></li>
+                <li><a href="#">사진첩</a></li>
+                <li><a href="/guestbook">방명록</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <script>
+        const nav_btn = document.querySelectorAll(".nav li");
+
+        nav_btn.forEach(btn => {
+            btn.addEventListener("click", () => {
+                nav_btn.forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+            });
+        });
+    </script>
+</body>
+
+
+</html>

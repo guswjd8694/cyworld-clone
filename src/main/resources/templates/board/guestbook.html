@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>방명록</title>
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/layout.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 북 커버 -->
+    <main class="main_container">
+      <!-- 왼쪽 페이지: 프로필 정보 -->
+      <section class="section_left book_cover left_page">
+        <h2 class="sr_only">왼쪽 페이지</h2>
+
+        <div class="inner_page">
+          <!-- 투데이 -->
+          <section class="today_stats top_area">
+            <h3 class="sr_only">방문자 합계</h3>
+            <dl class="visit_list">
+              <dt>today</dt>
+              <dd class="today_value">128</dd>
+              <dt>total</dt>
+              <dd>16525</dd>
+            </dl>
+          </section>
+
+          <section class="profile_area bottom_area">
+            <h3 class="sr_only">프로필 영역</h3>
+
+            <article class="mood">
+              <h4 class="sr_only">오늘의 기분</h4>
+
+              <!-- 주인장이 보는 오늘의 기분 -->
+              <form action="/mood/update" method="post" id="moodForm">
+                <section class="today_mood" aria-label="오늘의 기분 선택" data-role="admin">
+                  <h4 class="sr_only">오늘의 기분 선택</h4>
+
+                  <label for="moodDropdown" class="sr_only">오늘의 기분 선택</label>
+
+                  <p>today is..
+                    <button id="moodDropdown" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="moodDropdownLabel">
+                      🌷 행복
+                    </button>
+                  </p>
+                  <span id="moodDropdownLabel" class="sr_only">오늘의 기분 선택 버튼</span>
+
+                  <ul id="moodList" role="listbox" tabindex="-1" hidden>
+                    <li role="option" data-value="happy" aria-selected="true">🌷 행복</li>
+                    <li role="option" data-value="sad" aria-selected="false">⛱️ 그리움</li>
+                  </ul>
+
+                  <input type="hidden" name="mood" id="moodInput" value="happy" />
+                </section>
+              </form>
+              <!-- 주인장이 보는 오늘의 기분 -->
+
+
+              <!-- 다른 유저가 보는 오늘의 기분 -->
+              <section class="today_mood hide" aria-label="오늘의 기분" data-role="user">
+                <p id="moodLabel">today is.. <strong>🌷 행복</strong></p>
+              </section>
+              <!-- 다른 유저가 보는 오늘의 기분 -->
+            </article>
+
+
+            <article class="profile_pic">
+              <h4 class="sr_only">프로필 사진</h4>
+
+              <figure>
+                <img src="/imgs/test03.JPG" alt="프로필 사진" />
+                <figcaption class="sr_only">사용자의 기본 프로필 이미지</figcaption>
+              </figure>
+            </article>
+
+            <article class="profile_intro">
+              <h4 class="sr_only">소개글</h4>
+
+              <p>
+                답답하면<br>
+                너희들이<br>
+                가서뛰던지~
+              </p>
+            </article>
+
+            <article class="profile_history">
+              <h4 class="sr_only">프로필 히스토리</h4>
+
+              <p>History</p>
+              <!-- <button class="btn-prev_history" aria-label="이전 히스토리 보기">▲</button>
+              <button class="btn-next_history" aria-label="다음 히스토리 보기">▼</button> -->
+            </article>
+
+            <article class="profile_info">
+              <h4 class="sr_only">유저 정보</h4>
+
+              <p class="user_name">김현정</p>
+              <p class="user_gender">(♀)</p>
+              <p class="user_birth">1999. 01. 28</p>
+              <p class="user_email">
+                <a href="mailto:ajdrns8694@gmail.com">ajdrns8694@gmail.com</a>
+              </p>
+            </article>
+
+          </section>
+
+        </div>
+      </section>
+
+
+      <!-- 오른쪽 페이지: 방명록 -->
+      <section class="section_right book_cover right_page guestbook">
+        <h2 class="sr_only">오른쪽 페이지</h2>
+
+        <div class="inner_page">
+          <section class="title_area top_area">
+            <h3>사이좋은 사람들, 싸이월드</h3>
+
+            <div class="flex-wrap">
+              <ul>
+                <li>
+                  <button type="button" aria-label="일촌 맺기 추가하기">+일촌 맺기</button>
+                </li>
+                <li>
+                  <button type="button" aria-label="팬 되기 추가하기">+팬되기</button>
+                </li>
+              </ul>
+
+              <a href="javascript:void(0)" aria-disabled="true" tabindex="-1" title="싸이월드 주소 입력 예정">http://www.cyworld.com/dallaezzang</a>
+            </div>
+          </section>
+
+
+
+
+          <section class="bottom_area" aria-label="메인 하단 영역">
+            <div class="guestbook_container">
+              <!-- 입력 영역 -->
+              <section class="guestbook_input_area" aria-labelledby="guestbook_input_title">
+                <h3 id="guestbook_input_title" class="sr_only">방명록 입력란</h3>
+
+                <div class="guestbook_input_inner">
+                  <figure class="minimi_figure">
+                    <img src="/imgs/minimi_guest.jpg" alt="기본 미니미 이미지" />
+                    <figcaption class="sr_only">사용자의 기본 미니미 이미지</figcaption>
+                  </figure>
+
+                  <form action="/guestbook" method="post" class="guestbook_form">
+                    <label for="guestbook_content" class="sr_only">방명록 내용 입력</label>
+                    <textarea
+                            id="guestbook_content"
+                            name="content"
+                            rows="10"
+                            cols="50"
+                            placeholder="방명록에 하고 싶은 말을 남겨보세요~!"
+                            required
+                    ></textarea>
+                    <button type="submit" class="guestbook_btn">확인</button>
+                  </form>
+                </div>
+              </section>
+
+              <!-- 리스트 영역 -->
+              <section class="guestbook_list_area" aria-labelledby="guestbook_list_title">
+                <h3 id="guestbook_list_title" class="sr_only">방명록 목록</h3>
+                <ul class="guestbook_list">
+
+                  <%-- 반복문으로 방명록 데이터 뿌려주기 --%>
+                  <c:forEach var="guestbook" items="${guestbookPages}">
+                    <li class="guestbook_item">
+                      <article class="guestbook_card">
+                        <header class="guestbook_header">
+                          <em class="guestbook_number">No.${guestbook.id}</em>
+                          <a href="#"><h4 class="guestbook_writer">${guestbook.writer}</h4></a>
+                          <a href="#" class="mini_home_btn" role="button">미니홈피</a>
+                          <time datetime="${guestbook.createdAt}">(${guestbook.createdAt})</time>
+                        </header>
+
+                        <div class="guestbook_body">
+                          <figure class="guestbook_figure">
+                            <img src="/imgs/minimi_guest.jpg" alt="${guestbook.writer}의 미니미 이미지">
+                            <figcaption class="sr_only">${guestbook.writer}의 미니미</figcaption>
+                          </figure>
+                          <p class="guestbook_text">${guestbook.content}</p>
+                        </div>
+                      </article>
+                    </li>
+                  </c:forEach>
+
+                </ul>
+
+
+                <nav class="pagination" aria-label="페이지 네비게이션">
+                  <ul>
+                    <c:if test="${currentPage > 1}">
+                      <li>
+                        <a href="?page=${currentPage - 1}" class="prev"><</a>
+                      </li>
+                    </c:if>
+
+
+                    <c:forEach begin="1" end="${totalPages}" var="i">
+                      <li>
+                        <a href="?page=${i}" class="${i == currentPage ? 'active' : ''}" aria-current="page">${i}</a>
+                      </li>
+                    </c:forEach>
+
+                    <c:if test="${currentPage < totalPages}">
+                      <li>
+                        <a href="?page=${currentPage + 1}" class="next">></a>
+                      </li>
+                    </c:if>
+                  </ul>
+                </nav>
+              </section>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+
+    <!-- 네비 메뉴 -->
+    <nav class="nav" aria-label="미니홈피 메뉴">
+      <ul>
+        <li class="active"><a href="/home">홈</a></li>
+        <li><a href="#">프로필</a></li>
+        <li><a href="#">다이어리</a></li>
+        <li><a href="#">사진첩</a></li>
+        <li><a href="/guestbook">방명록</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <script>
+    const nav_btn = document.querySelectorAll(".nav li");
+
+    nav_btn.forEach(btn => {
+      btn.addEventListener("click", () => {
+        nav_btn.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>
