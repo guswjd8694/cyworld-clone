@@ -506,7 +506,7 @@ section.left_page section.today_stats .visit_list {
     position: absolute;
     z-index: 10;
     top: 100px;
-    right: -36px;
+    right: -44px;
 }
 
 .nav ul {
@@ -519,8 +519,6 @@ section.left_page section.today_stats .visit_list {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80px;
-    height: 48px;
     background-color: #2873a5;
     color: #fff;
     border: 1px solid #000;
@@ -528,6 +526,12 @@ section.left_page section.today_stats .visit_list {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     cursor: pointer;
+}
+
+.nav li a {
+    min-width: 72px;
+    padding: 10px 16px;
+    text-align: center;
 }
 
 
@@ -753,12 +757,11 @@ section.left_page section.today_stats .visit_list {
     }
 
     .nav {
-        right: -31px;
+        right: -44px;
     }
 
-    .nav li {
-        width: 75px;
-        height: 45px;
+    .nav li a {
+        padding: 10px 16px;
     }
 }
 
@@ -926,8 +929,8 @@ section.left_page section.today_stats .visit_list {
     }
 
     .nav {
-        top: 85px;
-        right: -28px;
+        top: 88px;
+        right: -38px;
     }
 
     .nav ul {
@@ -935,8 +938,10 @@ section.left_page section.today_stats .visit_list {
     }
 
     .nav li {
-        width: 64px;
-        height: 38px;
         font-size: 12px;
+    }
+
+    .nav li a {
+        padding: 10px 16px;
     }
 }

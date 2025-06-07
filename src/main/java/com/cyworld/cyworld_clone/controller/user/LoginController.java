@@ -33,11 +33,7 @@ public class LoginController {
             UserDto user = userDao.findByUsername(username);
 
             if(user != null && user.getPassword().equals(password)) {
-                session.setAttribute("isLogin", true);
                 session.setAttribute("loginUser", user);
-                session.setAttribute("name", user.getName());
-                session.setAttribute("username", user.getUsername());
-
                 System.out.println("로그인 성공! 세션 저장: " + user.getName() + ", " + user.getUsername());
 
                 return "redirect:/home";

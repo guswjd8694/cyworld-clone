@@ -99,16 +99,14 @@
                         <article class="profile_info">
                             <h4 class="sr_only">유저 정보</h4>
 
-                            <p class="user_name">${name}</p>
-                            <p class="user_gender">(♀)</p>
-                            <p class="user_birth">1999. 01. 28</p>
+                            <p class="user_name" th:text="${name}"></p>
+                            <p class="user_gender" th:text="${gender == 'F'} ? '(♀)' : '(♂)'"></p>
+                            <p class="user_birth" th:text="${birthday}"></p>
                             <p class="user_email">
-                                <a href="mailto:ajdrns8694@gmail.com">ajdrns8694@gmail.com</a>
+                                <a th:href="'mailto:' + ${email}" th:text="${email}"></a>
                             </p>
                         </article>
-
                     </section>
-
                 </div>
             </section>
 

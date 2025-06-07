@@ -95,11 +95,11 @@
             <article class="profile_info">
               <h4 class="sr_only">유저 정보</h4>
 
-              <p class="user_name">김현정</p>
-              <p class="user_gender">(♀)</p>
-              <p class="user_birth">1999. 01. 28</p>
+              <p class="user_name" th:text="${name}"></p>
+              <p class="user_gender" th:text="${gender == 'F'} ? '(♀)' : '(♂)'"></p>
+              <p class="user_birth" th:text="${birthday}"></p>
               <p class="user_email">
-                <a href="mailto:ajdrns8694@gmail.com">ajdrns8694@gmail.com</a>
+                <a th:href="'mailto:' + ${email}" th:text="${email}"></a>
               </p>
             </article>
 
@@ -164,11 +164,10 @@
               <!-- 리스트 영역 -->
               <section class="guestbook_list_area" aria-labelledby="guestbook_list_title">
                 <h3 id="guestbook_list_title" class="sr_only">방명록 목록</h3>
-                <ul class="guestbook_list">
-
-                  <%-- 반복문으로 방명록 데이터 뿌려주기 --%>
-                  <c:forEach var="guestbook" items="${guestbookPages}">
-                    <li class="guestbook_item">
+                <!-- 반복문으로 방명록 데이터 뿌려주기-->
+                <tr th:each="entry : ${guestbookPages}">
+                  <ul class="guestbook_list">
+                    <li th:if="${totalCount >= 1}" class="guestbook_item">
                       <article class="guestbook_card">
                         <header class="guestbook_header">
                           <em class="guestbook_number">No.${guestbook.id}</em>
@@ -186,31 +185,33 @@
                         </div>
                       </article>
                     </li>
-                  </c:forEach>
+                  </ul>
+                </tr>
 
-                </ul>
+                <tr th:if="${totalCount < 1}">
+                  <p>방명록이 없습니다.</p>
+                </tr>
 
 
-                <nav class="pagination" aria-label="페이지 네비게이션">
+                <nav class="pagination" aria-label="페이지 네비게이션" th:if="${totalPages > 0}">
                   <ul>
-                    <c:if test="${currentPage > 1}">
-                      <li>
-                        <a href="?page=${currentPage - 1}" class="prev"><</a>
-                      </li>
-                    </c:if>
+                    <!-- 이전 페이지 버튼 -->
+                    <li th:if="${currentPage > 1}">
+                      <a th:href="@{|?page=${currentPage - 1}|}" class="prev">&lt;</a>
+                    </li>
 
+                    <!-- 페이지 번호 반복 -->
+                    <li th:each="i : ${#numbers.sequence(1, totalPages)}">
+                      <a th:href="@{|?page=${i}|}"
+                         th:classappend="${i == currentPage} ? 'active' : ''"
+                         th:text="${i}">
+                      </a>
+                    </li>
 
-                    <c:forEach begin="1" end="${totalPages}" var="i">
-                      <li>
-                        <a href="?page=${i}" class="${i == currentPage ? 'active' : ''}" aria-current="page">${i}</a>
-                      </li>
-                    </c:forEach>
-
-                    <c:if test="${currentPage < totalPages}">
-                      <li>
-                        <a href="?page=${currentPage + 1}" class="next">></a>
-                      </li>
-                    </c:if>
+                    <!-- 다음 페이지 버튼 -->
+                    <li th:if="${currentPage < totalPages}">
+                      <a th:href="@{|?page=${currentPage + 1}|}" class="next">&gt;</a>
+                    </li>
                   </ul>
                 </nav>
               </section>
@@ -224,11 +225,11 @@
     <!-- 네비 메뉴 -->
     <nav class="nav" aria-label="미니홈피 메뉴">
       <ul>
-        <li class="active"><a href="/home">홈</a></li>
+        <li><a href="/home">홈</a></li>
         <li><a href="#">프로필</a></li>
         <li><a href="#">다이어리</a></li>
         <li><a href="#">사진첩</a></li>
-        <li><a href="/guestbook">방명록</a></li>
+        <li class="active"><a href="/guestbook">방명록</a></li>
       </ul>
     </nav>
   </div>
